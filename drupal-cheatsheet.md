@@ -232,7 +232,7 @@ $cache_metadata->applyTo($build);
 
 ---
 
-## 📚 Useful Services
+## Useful Services
 
 | Service ID                 | Description           |
 |----------------------------|-----------------------|
