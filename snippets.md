@@ -224,6 +224,7 @@ requirements:
 
 ## Form Alter
 
+**via hook**
 ```php
 function my_module_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   if ($form_id === 'user_register_form') {
@@ -231,6 +232,27 @@ function my_module_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
       '#type' => 'textfield',
       '#title' => t('My Custom Field'),
     ];
+  }
+}
+```
+
+**via attributes**
+```php
+namespace Drupal\mymodule\Hook;
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Hook\Attribute\Hook;
+
+class FormHooks {
+
+  #[Hook('form_alter')]
+  public function alterForm(array &$form, FormStateInterface $form_state, $form_id): void {
+    if ($form_id === 'user_register_form') {
+      $form['my_custom_field'] = [
+        '#type' => 'textfield',
+        '#title' => t('My Custom Field'),
+      ];
+    }
   }
 }
 ```
