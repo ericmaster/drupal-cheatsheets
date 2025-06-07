@@ -5,4 +5,4 @@ title: Drupal Cheatsheets
 
 # Drupal cheatsheets:
 
-* [snippet](./src/snippets.md)
+* [Snippets](./src/snippets.md)
