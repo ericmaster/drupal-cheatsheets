@@ -1,5 +1,8 @@
-
-# Drupal Code Snippet Cheat Sheet
+---
+layout: default
+title: Drupal Snippets Cheatsheet
+---
+# Drupal Code Snippets Cheat Sheet
 ## Index
 
 - [Routing and Controllers](#routing-and-controllers)
