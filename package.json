@@ -4,6 +4,7 @@
   "description": "This repo contains Drupal CMS cheatsheets.",
   "main": "index.js",
   "scripts": {
+    "build:css": "postcss assets/css/main.css -o assets/css/tailwind.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,6 +14,7 @@
     "postcss-cli": "^11.0.1"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.8",
     "autoprefixer": "^10.4.21",
     "cssnano": "^7.0.7",
     "postcss": "^8.5.4",
