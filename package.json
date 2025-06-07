@@ -1,0 +1,21 @@
+{
+  "name": "drupal-cheatsheets",
+  "version": "1.0.0",
+  "description": "This repo contains Drupal CMS cheatsheets.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "postcss-cli": "^11.0.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "cssnano": "^7.0.7",
+    "postcss": "^8.5.4",
+    "tailwindcss": "^4.1.8"
+  }
+}
