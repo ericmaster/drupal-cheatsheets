@@ -11,13 +11,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "postcss-cli": "^11.0.1"
+    "postcss-cli": "^11.0.1",
+    "remove": "^0.1.5",
+    "tailwindcss": "^4.1.10"
   },
   "devDependencies": {
+    "@tailwindcss/cli": "^4.1.10",
     "@tailwindcss/postcss": "^4.1.8",
     "autoprefixer": "^10.4.21",
     "cssnano": "^7.0.7",
-    "postcss": "^8.5.4",
-    "tailwindcss": "^4.1.8"
+    "postcss": "^8.5.4"
   }
 }
