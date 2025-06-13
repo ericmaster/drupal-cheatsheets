@@ -1,10 +1,10 @@
 title: Drupal cheatsheets
 description: Drupal Cheatsheets
-theme: minima
+# theme: minima
 markdown: kramdown
 lsi: false
 safe: true
-source: ./src
+source: ./
 incremental: false
 highlighter: rouge
 gist:

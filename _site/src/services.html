@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark">
+  <title>Drupal Services Cheatsheet</title>
+  <link rel="stylesheet" href="/assets/dist-main.css">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+    body {
+      font-family: "Inter", sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+  <button onclick="toggleDark()" id="theme-toggle" class="px-4 py-2 border flex items-center gap-2 cursor-pointer fixed top-4 right-4 z-50 bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 rounded-lg shadow-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+    <span id="icon-sun" style="display:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="5"/>
+        <g>
+          <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </span>
+    <span id="icon-moon" style="display:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+    </span>
+    <span class="sr-only">Toggle Theme</span>
+  </button>
+  <div class="container mx-auto px-4 py-8">
+    <h1>Drupal Services Cheatsheet</h1>
+    <table>
+  <thead>
+    <tr>
+      <th><strong>Service Name</strong></th>
+      <th><strong>Class (Core)</strong></th>
+      <th><strong>Description</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">database</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\Database\Connection</code></td>
+      <td>Central entry for database queries &amp; schema handling</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">entity_type.manager</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\Entity\EntityTypeManagerInterface</code></td>
+      <td>Manages entity types and their handlers</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">entity_type.bundle.info</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\Entity\EntityTypeBundleInfo</code></td>
+      <td>Provides bundle info (e.g. content types) for entity types</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">entity_type.storage.&lt;type&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\Entity\Sql\SqlContentEntityStorage</code></td>
+      <td>CRUD operations for each entity type (like node, user, taxonomy)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">cache.default</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\Cache\DatabaseBackend</code></td>
+      <td>Default caching layer</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">cache_context.*</code></td>
+      <td>Various <code class="language-plaintext highlighter-rouge">CacheContext</code> services</td>
+      <td>Provide context-sensitive cache variation (e.g. user roles, route, language) (<a href="https://api.drupal.org/api/drupal/core%21core.services.yml/8.9.x?utm_source=chatgpt.com" title="core.services.yml - Drupal API">api.drupal.org</a>, <a href="https://www.drupalatyourfingertips.com/events?utm_source=chatgpt.com" title="Events | Drupal at your Fingertips">drupalatyourfingertips.com</a>, <a href="https://www.axelerant.com/blog/drupal-11-features?utm_source=chatgpt.com" title="Drupal 11: Key Features, Enhancements, and What's New">axelerant.com</a>, <a href="https://drupal.stackexchange.com/questions/313838/how-to-get-route-inside-requestevent?utm_source=chatgpt.com" title="How to get route inside RequestEvent - Drupal Answers">drupal.stackexchange.com</a>, <a href="https://imagexmedia.com/blog/drupal-11-released-whats-new?utm_source=chatgpt.com" title="What's new in the Drupal 11 release: overview of exciting features">imagexmedia.com</a>)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">cache.dynamic_page_cache</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\Cache\DynamicPageCacheCache</code></td>
+      <td>Caches full page responses dynamically</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">cache.private</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\Cache\NullBackend</code></td>
+      <td>Private cache storage</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">renderer</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\Render\Renderer</code></td>
+      <td>Core of Drupal’s render pipeline (render arrays to HTML)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">theme.manager</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\Theme\ThemeManagerInterface</code></td>
+      <td>Handles theme discovery and rendering</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">file_url_generator</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\StreamWrapper\StreamWrapperManager</code></td>
+      <td>Generates URLs for uploaded files</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">path_alias.manager</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\path_alias\AliasManager</code></td>
+      <td>Handles URL alias generation and lookup</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">event_dispatcher</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\EventDispatcher\ContainerAwareEventDispatcher</code></td>
+      <td>Central service for subscribing &amp; dispatching Symfony/Drupal events</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">logger.factory</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\Logger\LoggerChannelFactory</code></td>
+      <td>Provides PSR-3 logger channels</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mail.manager</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\Mail\MailManagerInterface</code></td>
+      <td>Handles outgoing emails</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">plugin.manager.*</code></td>
+      <td>Varies by plugin type (e.g. block, formatter, field, etc.)</td>
+      <td>Discovers and loads plugin plugins</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">router.builder</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\Routing\RouteBuilder</code></td>
+      <td>Builds and rebuilds the main routing table</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">current_user</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\Session\AccountProxyInterface</code></td>
+      <td>Provides current user context</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">session_manager</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\Session\SessionManager</code></td>
+      <td>Starts and manages sessions</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">path.validator</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\Path\CurrentPathStack</code></td>
+      <td>Validates URLs, redirects, and path rewriting</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">lock</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\Lock\LockBackendInterface</code></td>
+      <td>Manages locks for concurrency control</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">messenger</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\Messenger\MessengerInterface</code></td>
+      <td>Handles user-facing messages (status, error, info)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">translation.manager</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\StringTranslation\TranslationManager</code></td>
+      <td>Manages interface translations</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config.factory</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\Config\ConfigFactoryInterface</code></td>
+      <td>Reads and writes immutable YAML config</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">keyvalue</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Drupal\Core\KeyValueStore\KeyValueExpirableFactory</code></td>
+      <td>Generic key/value storage for various data</td>
+    </tr>
+  </tbody>
+</table>
+
+
+  </div>
+
+  <script>
+    function updateThemeIcon() {
+      const isDark = document.documentElement.classList.contains('dark');
+      document.getElementById('icon-sun').style.display = isDark ? 'inline' : 'none';
+      document.getElementById('icon-moon').style.display = isDark ? 'none' : 'inline';
+    }
+    function toggleDark() {
+      const html = document.documentElement;
+      const isDark = html.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateThemeIcon();
+    }
+    // Load saved preference on page load
+    (function () {
+      const saved = localStorage.getItem('theme');
+      if (saved) {
+        document.documentElement.classList.toggle('dark', saved === 'dark');
+      } else {
+        // If no preference, fallback to system
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('dark', prefersDark);
+      }
+      updateThemeIcon();
+    })();
+  </script>
+</body>
+</html>
