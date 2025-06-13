@@ -4,7 +4,7 @@
   "description": "This repo contains Drupal CMS cheatsheets.",
   "main": "index.js",
   "scripts": {
-    "build:css": "postcss assets/css/main.css -o assets/css/tailwind.css",
+    "build:css": "postcss assets/css/main.css -o assets/dist-main.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
