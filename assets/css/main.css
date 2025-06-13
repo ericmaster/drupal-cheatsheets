@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
   h1 {
@@ -46,3 +44,9 @@
     margin-bottom: 0.25rem; /* mb-1 */
   }
 }
+
+@layer utilities {
+	
+}
+
+@config "../../tailwind.config.js";
