@@ -65,5 +65,53 @@
       updateThemeIcon();
     })();
   </script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('pre > code').forEach(function (codeBlock) {
+      var pre = codeBlock.parentNode;
+      // Create button
+      var button = document.createElement('button');
+      button.innerText = 'Copy';
+      button.className = 'copy-btn';
+      button.style = 'position:absolute;top:8px;right:8px;padding:2px 8px;font-size:0.9em;z-index:10;';
+      // Wrap pre in a relative div for positioning
+      var wrapper = document.createElement('div');
+      wrapper.style = 'position:relative;';
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+      wrapper.appendChild(button);
+
+      button.addEventListener('click', function () {
+        var text = codeBlock.innerText;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            button.innerText = 'Copied!';
+            setTimeout(function () { button.innerText = 'Copy'; }, 1200);
+          }, function () {
+            fallbackCopyTextToClipboard(text, button);
+          });
+        } else {
+          fallbackCopyTextToClipboard(text, button);
+        }
+      });
+    });
+
+    function fallbackCopyTextToClipboard(text, button) {
+      var textarea = document.createElement('textarea');
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        button.innerText = 'Copied!';
+        setTimeout(function () { button.innerText = 'Copy'; }, 1200);
+      } catch (err) {
+        button.innerText = 'Failed';
+        setTimeout(function () { button.innerText = 'Copy'; }, 1200);
+      }
+      document.body.removeChild(textarea);
+    }
+  });
+  </script>
 </body>
 </html>

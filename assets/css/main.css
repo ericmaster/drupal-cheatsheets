@@ -52,6 +52,12 @@
   td {
     @apply bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200;
   }
+  .copy-btn {
+    @apply bg-gray-100 dark:bg-gray-900 border text-gray-800 dark:text-white border-gray-300 rounded cursor-pointer;
+  }
+  .copy-btn:hover {
+    @apply bg-gray-200 dark:bg-gray-800;
+  }
 }
 
 @layer utilities {
