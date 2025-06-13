@@ -20,7 +20,6 @@ title: Drupal Snippets Cheatsheet
 - [Caching Snippet](#caching-snippet)
 - [Create a node programmatically](#create-a-node-programmatically)
 - [Add a custom field programmatically](#add-a-custom-field-programmatically)
-- [Useful Services](#useful-services)
 
 
 ---
@@ -596,14 +595,3 @@ FieldConfig::create([
 ```
 
 ---
-
-## Useful Services
-
-| Service ID                 | Description           |
-|----------------------------|-----------------------|
-| entity_type.manager        | Entity manager        |
-| database                   | Database connection   |
-| logger.channel.my_module   | Logger                |
-| current_user               | Current user object   |
-| module_handler             | Module services       |
-| config.factory             | Config service        |
