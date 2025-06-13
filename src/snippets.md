@@ -378,6 +378,7 @@ class ExampleFieldItem extends FieldItemBase {
     return $value === NULL || $value === '';
   }
 }
+```
 ---
 
 ## Custom Field Formatter
