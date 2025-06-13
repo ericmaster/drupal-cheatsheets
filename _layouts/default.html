@@ -14,19 +14,32 @@
   </style>
 </head>
 <body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
-  <button onclick="toggleDark()" class="px-4 py-2 border">Toggle Theme</button>
+  <button onclick="toggleDark()" id="theme-toggle" class="px-4 py-2 border flex items-center gap-2 cursor-pointer">
+    <span id="icon-sun" style="display:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15a5 5 0 100-10 5 5 0 000 10zm0 2a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm0-16a1 1 0 011 1v1a1 1 0 11-2 0V2a1 1 0 011-1zm8 8a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zm-16 0a1 1 0 011 1H2a1 1 0 110-2h1a1 1 0 011 1zm12.07 5.07a1 1 0 010 1.41l-.71.71a1 1 0 11-1.41-1.41l.71-.71a1 1 0 011.41 0zm-10.14 0a1 1 0 010 1.41l-.71.71a1 1 0 11-1.41-1.41l.71-.71a1 1 0 011.41 0zm10.14-10.14a1 1 0 00-1.41 0l-.71.71a1 1 0 101.41 1.41l.71-.71a1 1 0 000-1.41zm-10.14 0a1 1 0 00-1.41 0l-.71.71a1 1 0 101.41 1.41l.71-.71a1 1 0 000-1.41z"/></svg>
+    </span>
+    <span id="icon-moon" style="display:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+    </span>
+    <span class="sr-only">Toggle Theme</span>
+  </button>
   <div class="container mx-auto px-4 py-8">
     <h1>{{ page.title }}</h1>
     {{ content }}
   </div>
 
   <script>
+    function updateThemeIcon() {
+      const isDark = document.documentElement.classList.contains('dark');
+      document.getElementById('icon-sun').style.display = isDark ? 'inline' : 'none';
+      document.getElementById('icon-moon').style.display = isDark ? 'none' : 'inline';
+    }
     function toggleDark() {
       const html = document.documentElement;
       const isDark = html.classList.toggle('dark');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateThemeIcon();
     }
-
     // Load saved preference on page load
     (function () {
       const saved = localStorage.getItem('theme');
@@ -37,6 +50,7 @@
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         document.documentElement.classList.toggle('dark', prefersDark);
       }
+      updateThemeIcon();
     })();
   </script>
 </body>
