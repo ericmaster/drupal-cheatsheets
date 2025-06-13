@@ -1,3 +1,8 @@
+---
+layout: default
+title: Drupal Services Cheatsheet
+---
+
 | **Service Name**             | **Class (Core)**                                            | **Description**                                                                                                                                                                                              |
 | ---------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `database`                   | `Drupal\Core\Database\Connection`                           | Central entry for database queries & schema handling                                                                                                                                                         |
