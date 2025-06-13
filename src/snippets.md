@@ -44,6 +44,22 @@ namespace Drupal\my_module\Controller;
 use Drupal\Core\Controller\ControllerBase;
 
 class MyController extends ControllerBase {
+  #[Route('/custom/path', name: 'my_route')]
+  public function myMethod() {
+    return [
+      '#markup' => $this->t('Hello World!'),
+    ];
+  }
+}
+```
+
+Via **attributes**
+```php
+namespace Drupal\my_module\Controller;
+
+use Drupal\Core\Controller\ControllerBase;
+
+class MyController extends ControllerBase {
   public function myMethod() {
     return [
       '#markup' => $this->t('Hello World!'),
@@ -76,6 +92,35 @@ class MyService {
   protected $logger;
 
   public function __construct(EntityTypeManagerInterface $entityTypeManager, LoggerInterface $logger) {
+    $this->entityTypeManager = $entityTypeManager;
+    $this->logger = $logger;
+  }
+
+  public function doSomething() {
+    $this->logger->info('Doing something');
+  }
+}
+```
+
+via **attributes**
+```php
+namespace Drupal\my_module\Service;
+
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\DependencyInjection\Attribute\AsService;
+
+#[AsService(id: 'my_module.my_service')]
+class MyService {
+  protected $entityTypeManager;
+  protected $logger;
+
+  public function __construct(
+    EntityTypeManagerInterface $entityTypeManager,
+    #[Autowire(service:'logger.channel.my_module')]
+    LoggerInterface $logger
+  ) {
     $this->entityTypeManager = $entityTypeManager;
     $this->logger = $logger;
   }
@@ -203,6 +248,17 @@ services:
     class: Drupal\my_module\EventSubscriber\MyEventSubscriber
     tags:
       - { name: event_subscriber }
+```
+
+via **attributes**
+```php
+use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
+
+#[AsEventListener(event: 'kernel.request', priority: 10)]
+public function handleRequestEvent(RequestEvent $event): void
+{
+    // Logic before controller is called
+}
 ```
 
 ---
